@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.andersonsantos.springboot_mongodb.Repository.UserRepository;
+import com.andersonsantos.springboot_mongodb.dto.UserDTO;
 import com.andersonsantos.springboot_mongodb.entities.User;
 import com.andersonsantos.springboot_mongodb.services.exception.ObjectNotFoundException;
 
@@ -26,6 +27,14 @@ public class UserService {
 		Optional<User> obj = userRepository.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Object not fond"));
 		}
+
+	public User insertUser(User obj) {
+		return userRepository.insert(obj);
+	}
 	
+	public User fromDTO(UserDTO objDto) {
+		return new User (objDto.getId(), objDto.getName(), objDto.getEmail());
+	}
 
 }
+

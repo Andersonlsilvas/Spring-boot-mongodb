@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.andersonsantos.springboot_mongodb.services.exception.ObjectNotFoundException;
 
-import ch.qos.logback.core.status.Status;
 import jakarta.servlet.http.HttpServletRequest;
 
 @ControllerAdvice
