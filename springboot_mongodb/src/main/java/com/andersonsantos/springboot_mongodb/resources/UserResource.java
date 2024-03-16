@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.andersonsantos.springboot_mongodb.dto.UserDTO;
@@ -42,7 +41,7 @@ public class UserResource {
 		return ResponseEntity.ok().body(new UserDTO(obj));
 		
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity <Void> insert(@RequestBody UserDTO objDto){
 		User obj = service.fromDTO(objDto);
@@ -51,5 +50,13 @@ public class UserResource {
 		return ResponseEntity.created(uri).build();
 		
 	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity <Void> delete(@PathVariable String id){
+		service.delete(id);
+		return ResponseEntity.noContent().build();
+	}
 
+
+	
 }

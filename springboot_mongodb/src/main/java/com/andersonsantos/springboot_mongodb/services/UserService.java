@@ -15,23 +15,29 @@ import com.andersonsantos.springboot_mongodb.services.exception.ObjectNotFoundEx
 public class UserService {
 	
 	@Autowired
-	private UserRepository userRepository;
+	private UserRepository repo;
 	
 	
 	public List<User> findAll(){
-		return userRepository.findAll();
+		return repo.findAll();
 		
 	}	
 	
 	public User findById(String id) {
-		Optional<User> obj = userRepository.findById(id);
+		Optional<User> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Object not fond"));
 		}
 
 	public User insertUser(User obj) {
-		return userRepository.insert(obj);
+		return repo.insert(obj);
 	}
 	
+	
+	public void delete(String id) {
+		findById(id);
+		repo.deleteById(id);
+	}
+
 	public User fromDTO(UserDTO objDto) {
 		return new User (objDto.getId(), objDto.getName(), objDto.getEmail());
 	}
