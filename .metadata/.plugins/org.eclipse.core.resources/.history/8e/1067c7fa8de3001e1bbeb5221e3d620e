@@ -1,0 +1,5 @@
+package com.andersonsantos.springboot_mongodb.entities;
+
+public class User {
+
+}
